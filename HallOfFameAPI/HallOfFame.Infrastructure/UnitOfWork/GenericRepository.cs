@@ -2,6 +2,7 @@
 using HallOfFame.Domain.Interfaces.Repositories;
 using HallOfFame.Infrastructure.DataBase;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using System.Linq.Expressions;
 
 namespace HallOfFame.Infrastructure.UnitOfWork
@@ -49,6 +50,15 @@ namespace HallOfFame.Infrastructure.UnitOfWork
         {
             await _dataBase.Where(e => e.Id == id).ExecuteDeleteAsync();
             await _context.SaveChangesAsync();
+        }
+
+        public List<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            var entities = includeProperties.Aggregate(_dataBase.AsNoTracking(),
+                                                      (current, includeProperty) => current.Include(includeProperty)).ToList();
+
+
+            return entities;
         }
     }
 }

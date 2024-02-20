@@ -1,5 +1,4 @@
-﻿using HallOfFame.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HallOfFame.Infrastructure.DTO
 {
@@ -8,7 +7,10 @@ namespace HallOfFame.Infrastructure.DTO
         [Required]
         public string Name { get; set; }
 
-        public string? DispayName { get; set; }
-        public List<Skill>? Skills { get; set; }
+        public string DispayName { get; set; }
+        public string Description { get; set; }
+
+        [Required]
+        public List<SkillRequest> Skills { get; set; }
     }
 }

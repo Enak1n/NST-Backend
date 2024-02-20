@@ -41,12 +41,12 @@ namespace HallOfFame.Service.Business
 
         public async Task<List<Person>> GetAll()
         {
-            return await _unitOfWork.Persons.GetAllAsync();
+            return _unitOfWork.Persons.Include(p => p.Skills);
         }
 
         public async Task<Person> GetById(long id)
         {
-            var expectedPerson = await _unitOfWork.Persons.GetByIdAsync(id);
+            var expectedPerson = _unitOfWork.Persons.Include(p => p.Skills).FirstOrDefault(x => x.Id == id);
 
             if (expectedPerson == null)
                 throw new NotFoundException($"User with id {id} not found!");

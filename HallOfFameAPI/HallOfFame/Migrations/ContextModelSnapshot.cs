@@ -41,7 +41,7 @@ namespace HallOfFame.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Persons", (string)null);
                 });
 
             modelBuilder.Entity("HallOfFame.Domain.Entities.Skill", b =>
@@ -64,7 +64,7 @@ namespace HallOfFame.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Skills");
+                    b.ToTable("Skills", (string)null);
                 });
 
             modelBuilder.Entity("PersonSkill", b =>
@@ -79,7 +79,7 @@ namespace HallOfFame.Migrations
 
                     b.HasIndex("SkillsId");
 
-                    b.ToTable("PersonSkill");
+                    b.ToTable("PersonSkill", (string)null);
                 });
 
             modelBuilder.Entity("PersonSkill", b =>

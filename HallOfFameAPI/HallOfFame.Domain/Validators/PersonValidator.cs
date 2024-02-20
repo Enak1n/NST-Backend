@@ -10,6 +10,8 @@ namespace HallOfFame.Domain.Validators
             RuleFor(person => person.Name).NotEmpty().NotNull();
 
             RuleFor(person => person.DisplayName).MaximumLength(15);
+
+            RuleFor(person => person.Skills).NotEmpty().NotNull();
         }
     }
 }

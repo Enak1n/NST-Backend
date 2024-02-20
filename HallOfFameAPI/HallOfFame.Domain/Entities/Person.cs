@@ -6,6 +6,6 @@ namespace HallOfFame.Domain.Entities
     {
         public string? DisplayName { get; set; }
 
-        public ICollection<Skill> Skills { get; set; }
+        public List<Skill> Skills { get; set; }
     }
 }

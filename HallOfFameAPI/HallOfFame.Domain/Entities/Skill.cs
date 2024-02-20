@@ -3,6 +3,6 @@
     public class Skill : BaseEntity
     {
         public byte Level { get; set; }
-        public ICollection<Person> Persons { get; set; }
+        public List<Person> Persons { get; set; }
     }
 }

@@ -10,5 +10,6 @@ namespace HallOfFame.Domain.Interfaces.Repositories
         Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
         Task RemoveAsync(long id);
         Task<List<TEntity>> GetByPage(int page, int pageSize);
+        List<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties);
     }
 }
