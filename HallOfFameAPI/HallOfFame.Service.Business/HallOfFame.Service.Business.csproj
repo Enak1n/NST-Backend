@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HallOfFame.Domain.Interfaces\HallOfFame.Domain.Interfaces.csproj" />
+    <ProjectReference Include="..\HallOfFame.Service.Interfaces\HallOfFame.Service.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>

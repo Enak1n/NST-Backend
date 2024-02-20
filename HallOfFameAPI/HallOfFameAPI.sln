@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame.Domain", "HallOfFame.Domain\HallOfFame.Domain.csproj", "{7F706FC5-636B-45A6-9888-6BA75AB3B29B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HallOfFame.Domain", "HallOfFame.Domain\HallOfFame.Domain.csproj", "{7F706FC5-636B-45A6-9888-6BA75AB3B29B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame", "HallOfFame\HallOfFame.csproj", "{BE0EE909-523B-410D-8E3B-1AAECC1F39DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HallOfFame", "HallOfFame\HallOfFame.csproj", "{BE0EE909-523B-410D-8E3B-1AAECC1F39DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame.Domain.Interfaces", "HallOfFame.Domain.Interfaces\HallOfFame.Domain.Interfaces.csproj", "{DAA468D7-4E0C-4E1B-BF21-C2B105A9CCAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HallOfFame.Domain.Interfaces", "HallOfFame.Domain.Interfaces\HallOfFame.Domain.Interfaces.csproj", "{DAA468D7-4E0C-4E1B-BF21-C2B105A9CCAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame.Infrastructure", "HallOfFame.Infrastructure\HallOfFame.Infrastructure.csproj", "{A588AADA-35AD-4828-A1C1-69F80DA68FB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HallOfFame.Infrastructure", "HallOfFame.Infrastructure\HallOfFame.Infrastructure.csproj", "{A588AADA-35AD-4828-A1C1-69F80DA68FB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HallOfFame.Service.Interfaces", "HallOfFame.Service.Interfaces\HallOfFame.Service.Interfaces.csproj", "{B29B1D19-D365-441D-AF5D-52B3D8A188B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame.Service.Business", "HallOfFame.Service.Business\HallOfFame.Service.Business.csproj", "{9914AE83-45D1-4710-880E-AAEAC52F6BED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{A588AADA-35AD-4828-A1C1-69F80DA68FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A588AADA-35AD-4828-A1C1-69F80DA68FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A588AADA-35AD-4828-A1C1-69F80DA68FB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B29B1D19-D365-441D-AF5D-52B3D8A188B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B29B1D19-D365-441D-AF5D-52B3D8A188B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B29B1D19-D365-441D-AF5D-52B3D8A188B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B29B1D19-D365-441D-AF5D-52B3D8A188B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9914AE83-45D1-4710-880E-AAEAC52F6BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9914AE83-45D1-4710-880E-AAEAC52F6BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9914AE83-45D1-4710-880E-AAEAC52F6BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9914AE83-45D1-4710-880E-AAEAC52F6BED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

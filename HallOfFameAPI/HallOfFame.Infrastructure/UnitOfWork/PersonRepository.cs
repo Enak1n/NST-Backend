@@ -15,7 +15,7 @@ namespace HallOfFame.Infrastructure.UnitOfWork
             _context = context;
         }
 
-        public async Task EditAsync(long id, string name, string displayName, ICollection<Skill> skills)
+        public async Task EditAsync(long id, string name, string displayName, string description, ICollection<Skill> skills)
         {
             var product = await _context.Persons.FindAsync(id);
 
@@ -26,7 +26,8 @@ namespace HallOfFame.Infrastructure.UnitOfWork
             await _context.Persons.Where(p => p.Id == id).
                                     ExecuteUpdateAsync(p => p.SetProperty(p => p.Name, name)
                                                              .SetProperty(p => p.DisplayName, displayName)
-                                                             .SetProperty(p => p.Skills, skills));
+                                                             .SetProperty(p => p.Skills, skills)
+                                                             .SetProperty(p => p.Description, description));
         }
     }
 }
