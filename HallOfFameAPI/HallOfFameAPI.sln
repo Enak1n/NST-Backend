@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame", "HallOfFame\Ha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame.Domain.Interfaces", "HallOfFame.Domain.Interfaces\HallOfFame.Domain.Interfaces.csproj", "{DAA468D7-4E0C-4E1B-BF21-C2B105A9CCAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame.Infrastructure", "HallOfFame.Infrastructure\HallOfFame.Infrastructure.csproj", "{A588AADA-35AD-4828-A1C1-69F80DA68FB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DAA468D7-4E0C-4E1B-BF21-C2B105A9CCAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAA468D7-4E0C-4E1B-BF21-C2B105A9CCAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAA468D7-4E0C-4E1B-BF21-C2B105A9CCAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A588AADA-35AD-4828-A1C1-69F80DA68FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A588AADA-35AD-4828-A1C1-69F80DA68FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A588AADA-35AD-4828-A1C1-69F80DA68FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A588AADA-35AD-4828-A1C1-69F80DA68FB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
