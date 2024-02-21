@@ -10,6 +10,7 @@ using HallOfFame.Service.Interfaces;
 using HallOfFame.Utilities;
 using HallOfFame.Utilities.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using NLog;
 using NLog.Web;
@@ -44,6 +45,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "HallOfFame API", Version = "v1" });
+    c.OrderActionsBy(o => o.RelativePath);
 });
 
 var app = builder.Build();
