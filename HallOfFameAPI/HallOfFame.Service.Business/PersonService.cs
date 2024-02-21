@@ -21,7 +21,6 @@ namespace HallOfFame.Service.Business
             if (expectedRes != null)
                 throw new UniqueException($"User with display name {person.DisplayName} already exist!");
 
-            person.Id = person.NextId();
             await _unitOfWork.Persons.AddAsync(person);
             await _unitOfWork.SaveChangesAsync();
             

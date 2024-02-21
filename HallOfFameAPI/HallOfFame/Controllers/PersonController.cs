@@ -49,8 +49,6 @@ namespace HallOfFame.Controllers
         {
             try
             {
-                var zero = 0;
-                var fail = 2 / zero;
                 var person = await _personService.GetById(id);
 
                 var res = _mapper.Map<PersonResponse>(person);
@@ -101,9 +99,32 @@ namespace HallOfFame.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(long id)
+        public async Task<IActionResult> Update(long id, PersonRequest request)
         {
-            return Ok();
+            try
+            {
+                var newPerson = _mapper.Map<Person>(request);
+                var skills = _mapper.Map<List<Skill>>(request.Skills);
+                ValidationResult personResult = await _personValidator.ValidateAsync(newPerson);
+
+                if (!personResult.IsValid)
+                    return BadRequest(personResult.Errors);
+
+                foreach (var skill in skills)
+                {
+                    ValidationResult skillsResult = await _skillValidator.ValidateAsync(skill);
+                    if (!skillsResult.IsValid)
+                        return BadRequest(skillsResult.Errors);
+                }
+
+                await _personService.Update(id, request.Name, request.DispayName, request.Description, skills);
+
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete]

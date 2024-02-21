@@ -17,17 +17,38 @@ namespace HallOfFame.Infrastructure.UnitOfWork
 
         public async Task EditAsync(long id, string name, string displayName, string description, ICollection<Skill> skills)
         {
-            var product = await _context.Persons.FindAsync(id);
+            var person = await _context.Persons
+                .Include(p => p.Skills)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
-            if (product == null)
-                throw new NotFoundException("Product not found!");
+            if (person == null)
+                throw new NotFoundException("Person not found!");
 
+            await _context.Persons
+                .Where(p => p.Id == id)
+                .ExecuteUpdateAsync(p => p.SetProperty(x => x.Name, name)
+                                          .SetProperty(x => x.DisplayName, displayName)
+                                          .SetProperty(x => x.Description, description));
 
-            await _context.Persons.Where(p => p.Id == id).
-                                    ExecuteUpdateAsync(p => p.SetProperty(p => p.Name, name)
-                                                             .SetProperty(p => p.DisplayName, displayName)
-                                                             .SetProperty(p => p.Skills, skills)
-                                                             .SetProperty(p => p.Description, description));
+            foreach (var skill in skills)
+            {
+                var existingSkill = person.Skills.FirstOrDefault(s => s.Name == skill.Name);
+
+                if (existingSkill != null)
+                {
+                    await _context.Skills
+                        .Where(s => s.Persons.Any(p => p.Id == id) && s.Name == skill.Name)
+                        .ExecuteUpdateAsync(s => s.SetProperty(x => x.Name, skill.Name)
+                                                  .SetProperty(x => x.Description, skill.Description)
+                                                  .SetProperty(x => x.Level, skill.Level));
+                }
+                else
+                {
+                    person.Skills.Add(skill);
+                }
+            }
+
+            await _context.SaveChangesAsync();
         }
     }
 }

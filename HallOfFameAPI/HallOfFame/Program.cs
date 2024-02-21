@@ -26,12 +26,11 @@ builder.Services.AddDbContext<Context>(options =>
 builder.Logging.ClearProviders();
 builder.Host.UseNLog();
 
+builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IPersonService, PersonService>();
-builder.Services.AddScoped<ISkillService, SkillService>();
 builder.Services.AddScoped<IValidator<Person>, PersonValidator>();
 builder.Services.AddScoped<IValidator<Skill>, SkillValidator>();
-builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddFluentValidationClientsideAdapters();

@@ -1,6 +1,4 @@
-﻿using CSharpFunctionalExtensions;
-
-namespace HallOfFame.Domain.Entities
+﻿namespace HallOfFame.Domain.Entities
 {
     public class Person : BaseEntity
     {
