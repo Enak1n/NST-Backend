@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HallOfFame.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HallOfFame.Service.Interfaces", "HallOfFame.Service.Interfaces\HallOfFame.Service.Interfaces.csproj", "{B29B1D19-D365-441D-AF5D-52B3D8A188B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallOfFame.Service.Business", "HallOfFame.Service.Business\HallOfFame.Service.Business.csproj", "{9914AE83-45D1-4710-880E-AAEAC52F6BED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HallOfFame.Service.Business", "HallOfFame.Service.Business\HallOfFame.Service.Business.csproj", "{9914AE83-45D1-4710-880E-AAEAC52F6BED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

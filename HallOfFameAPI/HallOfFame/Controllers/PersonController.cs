@@ -6,7 +6,6 @@ using HallOfFame.Domain.Exceptions;
 using HallOfFame.Infrastructure.DTO;
 using HallOfFame.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace HallOfFame.Controllers
 {
@@ -50,12 +49,11 @@ namespace HallOfFame.Controllers
         {
             try
             {
+                var zero = 0;
+                var fail = 2 / zero;
                 var person = await _personService.GetById(id);
 
                 var res = _mapper.Map<PersonResponse>(person);
-                var skills = _mapper.Map<List<SkillResponse>>(person.Skills);
-
-                res.Skills = skills;
                 return Ok(res);
             }
             catch (NotFoundException ex)
@@ -97,6 +95,31 @@ namespace HallOfFame.Controllers
                 return Conflict(ex.Message);
             }
             catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(long id)
+        {
+            return Ok();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(long id)
+        {
+            try
+            {
+                await _personService.DeleteById(id);
+
+                return Ok();
+            }
+            catch(NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
