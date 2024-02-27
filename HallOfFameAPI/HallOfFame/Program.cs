@@ -10,7 +10,6 @@ using HallOfFame.Service.Interfaces;
 using HallOfFame.Utilities;
 using HallOfFame.Utilities.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using NLog;
 using NLog.Web;
@@ -22,7 +21,7 @@ LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentD
 
 // Add services to the container.
 builder.Services.AddDbContext<Context>(options =>
-    options.UseNpgsql(databaseConnection, b => b.MigrationsAssembly("HallOfFame")));
+    options.UseNpgsql(databaseConnection, b => b.MigrationsAssembly("HallOfFame.Infrastructure")));
 
 builder.Logging.ClearProviders();
 builder.Host.UseNLog();
@@ -30,9 +29,8 @@ builder.Host.UseNLog();
 builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IPersonService, PersonService>();
-builder.Services.AddScoped<IValidator<Person>, PersonValidator>();
-builder.Services.AddScoped<IValidator<Skill>, SkillValidator>();
 
+builder.Services.AddValidatorsFromAssembly(typeof(PersonValidator).Assembly);
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddControllers()
@@ -45,7 +43,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "HallOfFame API", Version = "v1" });
-    c.OrderActionsBy(o => o.RelativePath);
 });
 
 var app = builder.Build();

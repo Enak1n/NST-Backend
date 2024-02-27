@@ -9,7 +9,7 @@ namespace HallOfFame.Domain.Validators
         {
             RuleFor(skill => skill.Name).NotNull().NotEmpty();
 
-            RuleFor(skill => skill.Level).GreaterThan((byte)0).LessThan((byte)10);
+            RuleFor(skill => skill.Level).GreaterThan((byte)0).LessThan((byte)11);
         }
     }
 }

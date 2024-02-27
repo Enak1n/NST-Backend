@@ -2,17 +2,20 @@
 using HallOfFame.Infrastructure.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace HallOfFame.Migrations
+namespace HallOfFame.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240227072426_Intial")]
+    partial class Intial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +44,7 @@ namespace HallOfFame.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons", (string)null);
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("HallOfFame.Domain.Entities.Skill", b =>
@@ -64,7 +67,7 @@ namespace HallOfFame.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Skills", (string)null);
+                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("PersonSkill", b =>
@@ -79,7 +82,7 @@ namespace HallOfFame.Migrations
 
                     b.HasIndex("SkillsId");
 
-                    b.ToTable("PersonSkill", (string)null);
+                    b.ToTable("PersonSkill");
                 });
 
             modelBuilder.Entity("PersonSkill", b =>

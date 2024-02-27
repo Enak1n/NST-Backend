@@ -71,14 +71,14 @@ namespace HallOfFame.Controllers
             {
                 var newPerson = _mapper.Map<Person>(request);
                 var skills = _mapper.Map<List<Skill>>(request.Skills);
-                ValidationResult personResult = await _personValidator.ValidateAsync(newPerson);
+                ValidationResult personResult = _personValidator.Validate(newPerson);
 
                 if (!personResult.IsValid)
                     return BadRequest(personResult.Errors);
 
                 foreach (var skill in skills)
                 {
-                    ValidationResult skillsResult = await _skillValidator.ValidateAsync(skill);
+                    ValidationResult skillsResult = _skillValidator.Validate(skill);
                     if(!skillsResult.IsValid)
                         return BadRequest(skillsResult.Errors);
                 }
@@ -105,14 +105,14 @@ namespace HallOfFame.Controllers
             {
                 var newPerson = _mapper.Map<Person>(request);
                 var skills = _mapper.Map<List<Skill>>(request.Skills);
-                ValidationResult personResult = await _personValidator.ValidateAsync(newPerson);
+                ValidationResult personResult = _personValidator.Validate(newPerson);
 
                 if (!personResult.IsValid)
                     return BadRequest(personResult.Errors);
 
                 foreach (var skill in skills)
                 {
-                    ValidationResult skillsResult = await _skillValidator.ValidateAsync(skill);
+                    ValidationResult skillsResult = _skillValidator.Validate(skill);
                     if (!skillsResult.IsValid)
                         return BadRequest(skillsResult.Errors);
                 }
