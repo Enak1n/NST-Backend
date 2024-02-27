@@ -1,4 +1,5 @@
-﻿using HallOfFame.Domain.Entities;
+﻿using FluentValidation;
+using HallOfFame.Domain.Entities;
 using HallOfFame.Domain.Exceptions;
 using HallOfFame.Domain.Interfaces.Repositories;
 using HallOfFame.Service.Interfaces;
@@ -8,18 +9,17 @@ namespace HallOfFame.Service.Business
     public class PersonService : IPersonService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IValidator<Person> _validator;
 
-        public PersonService(IUnitOfWork unitOfWork)
+        public PersonService(IUnitOfWork unitOfWork, IValidator<Person> validator)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
         }
 
         public async Task<Person> Create(Person person)
         {
             var expectedRes = await _unitOfWork.Persons.FindAsync(p => p.DisplayName == person.DisplayName);
-
-            if (expectedRes != null)
-                throw new UniqueException($"User with display name {person.DisplayName} already exist!");
 
             await _unitOfWork.Persons.AddAsync(person);
             await _unitOfWork.SaveChangesAsync();
@@ -43,6 +43,8 @@ namespace HallOfFame.Service.Business
             return _unitOfWork.Persons.Include(p => p.Skills);
         }
 
+        // Проверку на null не удастся вынести в валидатор так как если сущности действительно не существует то
+        // валидатор будет выдавать exception что не может работать с null
         public async Task<Person> GetById(long id)
         {
             var expectedPerson = _unitOfWork.Persons.Include(p => p.Skills).FirstOrDefault(x => x.Id == id);
@@ -55,6 +57,7 @@ namespace HallOfFame.Service.Business
 
         public async Task Update(long id, string name, string displayName, string description, ICollection<Skill> skills)
         {
+
             await _unitOfWork.Persons.EditAsync(id, name, displayName, description, skills);
         }
     }

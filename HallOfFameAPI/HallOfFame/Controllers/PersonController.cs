@@ -70,7 +70,7 @@ namespace HallOfFame.Controllers
             try
             {
                 var newPerson = _mapper.Map<Person>(request);
-                ValidationResult personResult = _personValidator.Validate(newPerson);
+                ValidationResult personResult = await _personValidator.ValidateAsync(newPerson);
 
                 if (!personResult.IsValid)
                     return BadRequest(personResult.Errors);
@@ -97,7 +97,7 @@ namespace HallOfFame.Controllers
             {
                 var newPerson = _mapper.Map<Person>(request);
                 var skills = _mapper.Map<List<Skill>>(request.Skills);
-                ValidationResult personResult = _personValidator.Validate(newPerson);
+                ValidationResult personResult = await _personValidator.ValidateAsync(newPerson);
 
                 if (!personResult.IsValid)
                     return BadRequest(personResult.Errors);
