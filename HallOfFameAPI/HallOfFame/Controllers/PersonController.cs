@@ -96,6 +96,7 @@ namespace HallOfFame.Controllers
             try
             {
                 var newPerson = _mapper.Map<Person>(request);
+                var skills = _mapper.Map<List<Skill>>(request.Skills);
                 ValidationResult personResult = _personValidator.Validate(newPerson);
 
                 if (!personResult.IsValid)

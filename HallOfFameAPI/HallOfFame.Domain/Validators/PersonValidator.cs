@@ -14,7 +14,7 @@ namespace HallOfFame.Domain.Validators
             RuleFor(person => person.Skills).NotEmpty().NotNull();
 
             RuleForEach(person => person.Skills)
-                                  .SetValidator(new SkillValidator());
+                                .SetValidator(new SkillValidator());
         }
     }
 }
