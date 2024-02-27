@@ -70,18 +70,10 @@ namespace HallOfFame.Controllers
             try
             {
                 var newPerson = _mapper.Map<Person>(request);
-                var skills = _mapper.Map<List<Skill>>(request.Skills);
                 ValidationResult personResult = _personValidator.Validate(newPerson);
 
                 if (!personResult.IsValid)
                     return BadRequest(personResult.Errors);
-
-                foreach (var skill in skills)
-                {
-                    ValidationResult skillsResult = _skillValidator.Validate(skill);
-                    if(!skillsResult.IsValid)
-                        return BadRequest(skillsResult.Errors);
-                }
 
                 var createdPerson = await _personService.Create(newPerson);
 
@@ -104,18 +96,10 @@ namespace HallOfFame.Controllers
             try
             {
                 var newPerson = _mapper.Map<Person>(request);
-                var skills = _mapper.Map<List<Skill>>(request.Skills);
                 ValidationResult personResult = _personValidator.Validate(newPerson);
 
                 if (!personResult.IsValid)
                     return BadRequest(personResult.Errors);
-
-                foreach (var skill in skills)
-                {
-                    ValidationResult skillsResult = _skillValidator.Validate(skill);
-                    if (!skillsResult.IsValid)
-                        return BadRequest(skillsResult.Errors);
-                }
 
                 await _personService.Update(id, request.Name, request.DispayName, request.Description, skills);
 
