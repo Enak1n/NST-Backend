@@ -16,15 +16,13 @@ namespace HallOfFame.Controllers
         private readonly IPersonService _personService;
         private readonly IMapper _mapper;
         private readonly IValidator<Person> _personValidator;
-        private readonly IValidator<Skill> _skillValidator;
 
         public PersonController(IPersonService personService, IMapper mapper,
-                                IValidator<Person> personValidator, IValidator<Skill> skillValidator)
+                                IValidator<Person> personValidator)
         {
             _personService = personService;
             _mapper = mapper;
-            _personValidator = personValidator;
-            _skillValidator = skillValidator;
+            _personValidator = personValidator; 
         }
 
         [HttpGet]

@@ -1,8 +1,6 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using HallOfFame.Domain.Entities;
 using HallOfFame.Domain.Interfaces.Repositories;
-using HallOfFame.Domain.Validators;
 using HallOfFame.Infrastructure.DataBase;
 using HallOfFame.Infrastructure.UnitOfWork;
 using HallOfFame.Service.Business;
@@ -10,7 +8,6 @@ using HallOfFame.Service.Interfaces;
 using HallOfFame.Utilities;
 using HallOfFame.Utilities.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using NLog;
 using NLog.Web;
