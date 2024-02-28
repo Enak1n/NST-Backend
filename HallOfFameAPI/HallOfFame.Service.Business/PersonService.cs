@@ -55,10 +55,15 @@ namespace HallOfFame.Service.Business
             return expectedPerson;
         }
 
-        public async Task Update(long id, string name, string displayName, string description, ICollection<Skill> skills)
+        public async Task Update(long id, string name, string displayName, string description, List<Skill> skills)
         {
+            var expectedPerson = await _unitOfWork.Persons.GetByIdAsync(id);
 
-            await _unitOfWork.Persons.EditAsync(id, name, displayName, description, skills);
+            if(!string.IsNullOrEmpty(displayName))
+                await _unitOfWork.Persons.EditAsync(id, name, displayName, description, skills);
+            else
+                await _unitOfWork.Persons.EditAsync(id, name, expectedPerson.DisplayName, description, skills);
+
         }
     }
 }

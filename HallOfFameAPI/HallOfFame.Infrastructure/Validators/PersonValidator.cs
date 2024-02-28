@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using HallOfFame.Domain.Entities;
 using HallOfFame.Domain.Exceptions;
 using HallOfFame.Domain.Interfaces.Repositories;
@@ -16,9 +17,10 @@ public class PersonValidator : AbstractValidator<Person>
 
         RuleFor(person => person.DisplayName)
             .MaximumLength(15)
-            .MustAsync(BeUniqueDisplayName);
+            .MustAsync(BeUniqueDisplayName)
+            .When(person => !string.IsNullOrEmpty(person.DisplayName) && person.DisplayName.Trim() != ""); ;
 
-        RuleFor(person => person.Skills).NotEmpty().NotNull();
+        RuleFor(person => person.Skills).NotNull();
 
         RuleForEach(person => person.Skills)
             .SetValidator(new SkillValidator());
@@ -32,6 +34,6 @@ public class PersonValidator : AbstractValidator<Person>
         if (existingPerson != null)
             throw new UniqueException($"User with {displayName} already exist!");
 
-        return existingPerson != null;
+        return existingPerson == null;
     }
 }

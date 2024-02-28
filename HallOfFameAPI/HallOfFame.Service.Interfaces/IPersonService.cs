@@ -7,7 +7,7 @@ namespace HallOfFame.Service.Interfaces
         Task<List<Person>> GetAll();
         Task<Person> GetById(long id);
         Task<Person> Create(Person person);
-        Task Update(long id, string name, string displayName, string description, ICollection<Skill> skills);
+        Task Update(long id, string name, string displayName, string description, List<Skill> skills);
         Task DeleteById(long id);
     }
 }
